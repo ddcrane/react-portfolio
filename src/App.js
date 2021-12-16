@@ -1,50 +1,37 @@
-import React, { useState } from 'react';
-import Nav from './components/Nav';
-import About from './components/About';
-import Portfolio from './components/Portfolio';
-import ContactForm from './components/Contact';
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+import Page from "./components/Page";
+import Footer from "./components/Footer";
 
 function App() {
-  const [categories] = useState([
+  const [pages] = useState([
     {
-      name: 'Portfolio',
-      description: 'My projects',
+      name: "about me"
     },
-    { name: 'Resume', description: 'Look at my resume!' },
+    { name: "portfolio" },
+    { name: "contact" },
+    {
+      name: "resume"
+    }
   ]);
 
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
-
-  const [contactSelected, setContactSelected] = useState(false);
-
- 
+  const [currentPage, setCurrentPage] = useState(pages[0]);
 
   return (
     <div>
-      <Nav
-        categories={categories}
-        setCurrentCategory={setCurrentCategory}
-        currentCategory={currentCategory}
-        contactSelected={contactSelected}
-        setContactSelected={setContactSelected}
-      ></Nav>
+      <Header>
+        <Nav
+          pages={pages}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        ></Nav>
+      </Header>
       <main>
-        {!contactSelected ? (
-          <>
-            <Portfolio currentCategory={currentCategory}></Portfolio>
-            <About></About>
-          </>
-        ) : (
-          <ContactForm></ContactForm>
-        )}
+        <Page currentPage={currentPage}></Page>
       </main>
-      <footer>
-        <a href="https://github.com/ddcrane">Github</a>
-        <a href="https://www.linkedin.com/in/david-crane-62a65a218/">LinkedIn</a>
-        <a href="https://stackoverflow.com/users/15956694/ddcrane">Stack Overflow</a>
-    </footer>
+      <Footer />
     </div>
-    
   );
 }
 

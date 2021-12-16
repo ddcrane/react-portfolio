@@ -3,54 +3,34 @@ import { capitalizeFirstLetter } from '../../utils/helpers';
 
 function Nav(props) {
   const {
-    categories = [],
-    setCurrentCategory,
-    contactSelected,
-    currentCategory,
-    setContactSelected,
+    pages = [],
+    setCurrentPage,
+    currentPage,
   } = props;
 
   useEffect(() => {
-    document.title = capitalizeFirstLetter(currentCategory.name);
-  }, [currentCategory]);
+    document.title = capitalizeFirstLetter(currentPage.name);
+  }, [currentPage]);
 
-  return (
-    <header className="flex-row px-1">
-      <h2>
-        <a>
-          <span role="img" aria-label="camera"></span> David Crane
-        </a>
-      </h2>
+  return (    
       <nav>
         <ul className="flex-row">
-          <li className="mx-2">
-            <a data-testid="about" href="#about" onClick={() => setContactSelected(false)}>
-              About Me
-            </a>
-          </li>
-          <li className={`mx-2 ${contactSelected && 'navActive'}`}>
-            <span onClick={() => setContactSelected(true)}>Contact</span>
-          </li>
-          {categories.map((category) => (
+          {pages.map((Page) => (
             <li
-              className={`mx-1 ${
-                currentCategory.name === category.name && !contactSelected && 'navActive'
+              className={`mx-5 ${
+                currentPage.name === Page.name && 'navActive'
                 }`}
-              key={category.name}
+              key={Page.name}
             >
               <span
-                onClick={() => {
-                  setCurrentCategory(category);
-                  setContactSelected(false);
-                }}
+                onClick={() => setCurrentPage(Page)}
               >
-                {capitalizeFirstLetter(category.name)}
+                {capitalizeFirstLetter(Page.name)}
               </span>
             </li>
           ))}
         </ul>
       </nav>
-    </header>
   );
 }
 

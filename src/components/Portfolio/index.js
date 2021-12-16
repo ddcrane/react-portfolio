@@ -1,41 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Project from "../Project";
 
-import { capitalizeFirstLetter } from '../../utils/helpers';
+function Portfolio() {
 
-function Gallery(props) {
-  const { currentCategory } = props;
+  // Replace links with deployed projects and GitHub repos
+  const [projects] = useState([
+    {
+      name: 'surf-report',
+      description: 'MERN Stack',
+      link: "https://github.com",
+      repo: "https://github.com"
+    },
+    {
+      name: 'pastel-puzzels',
+      description: 'MERN Stack',
+      link: "https://github.com",
+      repo: "https://github.com"
+    },
+    {
+      name: 'run-buddy',
+      description: 'HTML/CSS',
+      link: "https://github.com",
+      repo: "https://github.com"
+    },
+    {
+      name: 'led-wall',
+      description: 'Node/IoT',
+      link: "https://github.com",
+      repo: "https://github.com"
+    },
+    {
+      name: 'calculator',
+      description: 'React/JavaScript/CSS',
+      link: "https://github.com",
+      repo: "https://github.com"
+    },
+  ]);
+
   return (
-    <section>
-      <h1 data-testid="h1tag">{capitalizeFirstLetter(currentCategory.name)}</h1>
-      <p>{currentCategory.description}</p>
-      <ul>
-        <div>
-            <li><a href="https://ddcrane.github.io/run-buddy">Run Buddy</a></li> 
-            
-        </div>
-
-        <div>
-            <li><a href="https://ddcrane.github.io/food-festival/">Food Festival</a></li>
-        </div>
-        
-        <div>
-            <li><a href="https://isaiahnegron.github.io/project-spaghetti/" className="spaghetti">Project Spaghetti</a></li>
-            {/* <img src="../../assets/spaghetti.png/" /> */}
-        </div>
-        
-        <div>
-            <li><a href="https://pokemon-trading-post.herokuapp.com/">Pokemon Trading Post</a></li>
-        </div>
-        <div>
-            <li><a href="https://ddcrane.github.io/taskinator/">Taskinator</a></li>
-        </div>
-        <div>
-            <li><a href="https://afternoon-caverns-58335.herokuapp.com/">Note Taker</a></li>
-        </div>
-    </ul>
-    </section>
+    <div>
+      <div className="flex-row">
+        {projects.map((project, idx) => (
+          <Project
+            project={project}
+            key={"project" + idx}
+          />
+        ))}
+      </div>
+    </div>
   );
-}
-export default Gallery;
+};
 
-
+export default Portfolio;
